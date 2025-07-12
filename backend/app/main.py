@@ -1,7 +1,5 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import FileResponse
-import os
 
 app = FastAPI(
     title="Meovis API",
@@ -23,10 +21,12 @@ async def root():
     """Ana endpoint"""
     return {"message": "Meovis API çalışıyor!"}
 
+
 @app.get("/health")
 async def health_check():
     """Health check endpoint"""
     return {"status": "healthy", "service": "meovis-api"}
+
 
 @app.get("/api/v1/status")
 async def api_status():
@@ -37,10 +37,12 @@ async def api_status():
         "service": "meovis-api"
     }
 
+
 @app.get("/favicon.ico")
 async def favicon():
     """Favicon endpoint - 404 döndürür"""
     return {"message": "No favicon available"}
+
 
 if __name__ == "__main__":
     import uvicorn
