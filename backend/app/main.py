@@ -4,7 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 app = FastAPI(
     title="Meovis API",
     description="Machine Learning Visualization Toolkit API",
-    version="0.0.1"
+    version="0.0.1",
 )
 
 # CORS ayarları
@@ -15,6 +15,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 
 @app.get("/")
 async def root():
@@ -31,11 +32,7 @@ async def health_check():
 @app.get("/api/v1/status")
 async def api_status():
     """API durumu"""
-    return {
-        "status": "active",
-        "version": "0.0.1",
-        "service": "meovis-api"
-    }
+    return {"status": "active", "version": "0.0.1", "service": "meovis-api"}
 
 
 @app.get("/favicon.ico")
@@ -46,4 +43,5 @@ async def favicon():
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000) 
+
+    uvicorn.run(app, host="0.0.0.0", port=8000)
