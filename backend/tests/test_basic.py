@@ -1,15 +1,14 @@
 import pytest
 from fastapi.testclient import TestClient
 
-# Bu dosya şimdilik boş bırakılıyor çünkü henüz main.py dosyası yok
-# Ana uygulama dosyası oluşturulduğunda buraya testler eklenecek
+# Basic test file for the FastAPI application
 
 def test_basic():
-    """Temel test fonksiyonu"""
+    """Basic test function"""
     assert True
 
 def test_imports():
-    """Gerekli kütüphanelerin import edilebilir olduğunu test eder"""
+    """Tests that required libraries can be imported"""
     try:
         import fastapi
         import uvicorn
@@ -18,15 +17,15 @@ def test_imports():
         import sklearn
         assert True
     except ImportError as e:
-        pytest.fail(f"Import hatası: {e}")
+        pytest.fail(f"Import error: {e}")
 
 def test_app_creation():
-    """FastAPI uygulamasının oluşturulabildiğini test eder"""
+    """Tests that FastAPI application can be created"""
     from app.main import app
     assert app is not None
 
 def test_health_check():
-    """Health check endpoint'inin çalıştığını test eder"""
+    """Tests that health check endpoint works"""
     from app.main import app
     client = TestClient(app)
     response = client.get("/health")
@@ -34,15 +33,16 @@ def test_health_check():
     assert response.json()["status"] == "healthy"
 
 def test_root_endpoint():
-    """Root endpoint'inin çalıştığını test eder"""
+    """Tests that root endpoint works"""
     from app.main import app
     client = TestClient(app)
     response = client.get("/")
     assert response.status_code == 200
     assert "message" in response.json()
+    assert response.json()["message"] == "Meovis API is running!"
 
 def test_api_status():
-    """API status endpoint'inin çalıştığını test eder"""
+    """Tests that API status endpoint works"""
     from app.main import app
     client = TestClient(app)
     response = client.get("/api/v1/status")
@@ -50,7 +50,7 @@ def test_api_status():
     assert response.json()["status"] == "active"
 
 def test_favicon():
-    """Favicon endpoint'inin çalıştığını test eder"""
+    """Tests that favicon endpoint works"""
     from app.main import app
     client = TestClient(app)
     response = client.get("/favicon.ico")

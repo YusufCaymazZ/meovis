@@ -19,8 +19,8 @@ app.add_middleware(
 
 @app.get("/")
 async def root():
-    """Ana endpoint"""
-    return {"message": "Meovis API çalışıyor!"}
+    """Root endpoint"""
+    return {"message": "Meovis API is running!"}
 
 
 @app.get("/health")
@@ -31,13 +31,13 @@ async def health_check():
 
 @app.get("/api/v1/status")
 async def api_status():
-    """API durumu"""
+    """API status"""
     return {"status": "active", "version": "0.0.1", "service": "meovis-api"}
 
 
 @app.get("/favicon.ico")
 async def favicon():
-    """Favicon endpoint - 404 döndürür"""
+    """Favicon endpoint - returns no favicon message"""
     return {"message": "No favicon available"}
 
 
