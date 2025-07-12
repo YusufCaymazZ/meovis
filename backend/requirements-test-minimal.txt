@@ -8,6 +8,7 @@ pytest-cov
 black
 isort
 flake8
+mypy
 
 # Security tools
 bandit
