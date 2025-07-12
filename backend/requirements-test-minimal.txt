@@ -1,0 +1,14 @@
+# Minimal test dependencies
+pytest
+pytest-asyncio
+httpx
+pytest-cov
+
+# Basic linting
+black
+isort
+flake8
+
+# Security tools
+bandit
+safety 
