@@ -3,8 +3,8 @@ import { Link as RouterLink } from 'react-router-dom'
 import ScienceIcon from '@mui/icons-material/Science'
 
 const Header = () => {
-  return (
-    <AppBar position="static">
+  return ( //I LOVE SFY
+    <AppBar position="static" sx={{ width: '100vw' }}>
       <Toolbar>
         <ScienceIcon sx={{ mr: 2 }} />
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
