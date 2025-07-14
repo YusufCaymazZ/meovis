@@ -28,8 +28,7 @@ def get_csv_service():
 
 @router.post("/upload-csv/")
 async def upload_csv(
-    file: UploadFile = File(...),
-    service: CSVService = Depends(get_csv_service)
+    file: UploadFile = File(...), service: CSVService = Depends(get_csv_service)
 ):
     if not file.filename.endswith(".csv"):
         raise HTTPException(status_code=400, detail="Only CSV files are allowed.")
@@ -41,10 +40,7 @@ async def upload_csv(
     global csv_data_store
     csv_data_store = data
 
-    return {
-        "message": "CSV uploaded successfully",
-        "rows": len(data)
-    }
+    return {"message": "CSV uploaded successfully", "rows": len(data)}
 
 
 @router.get("/upload-csv/")
@@ -52,7 +48,4 @@ async def get_csv_data():
     if not csv_data_store:
         raise HTTPException(status_code=404, detail="No CSV data found.")
 
-    return {
-        "rows": len(csv_data_store),
-        "data": csv_data_store
-    }
+    return {"rows": len(csv_data_store), "data": csv_data_store}
