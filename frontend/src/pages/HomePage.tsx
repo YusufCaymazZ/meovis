@@ -22,29 +22,29 @@ const HomePage = () => {
       description: 'Upload your ML model and dataset to get detailed performance metrics and visualizations.',
       icon: <AnalyticsIcon sx={{ fontSize: 40 }} />,
       action: () => navigate('/analyze'),
-      color: '#1976d2'
+      color: '#4E377A'
     },
     {
       title: 'Compare Models',
       description: 'Compare multiple models side-by-side with interactive charts and metrics.',
       icon: <CompareArrowsIcon sx={{ fontSize: 40 }} />,
       action: () => navigate('/compare'),
-      color: '#dc004e'
+      color: '#4E377A'
     },
     {
       title: 'Model Explainability',
       description: 'Understand your model predictions with SHAP, LIME, and feature importance analysis.',
       icon: <ScienceIcon sx={{ fontSize: 40 }} />,
       action: () => navigate('/analyze'),
-      color: '#2e7d32'
+      color: '#4E377A'
     }
   ]
 
   return (
     <Container maxWidth="lg">
       <Box sx={{ textAlign: 'center', mb: 6 }}>
-        <Typography variant="h2" component="h1" gutterBottom>
-          🐾 Welcome to Meovis
+        <Typography variant="h2" component="h1" gutterBottom sx={{color:'#261542'}}>
+          Welcome to Meovis
         </Typography>
         <Typography variant="h5" color="text.secondary" paragraph>
           Understand your ML models visually with interactive analysis and explainability tools
@@ -65,7 +65,8 @@ const HomePage = () => {
                 transition: 'transform 0.2s',
                 '&:hover': {
                   transform: 'translateY(-4px)',
-                  boxShadow: 4
+                  boxShadow: 4, 
+                  backgroundColor:'#C0B0EB'
                 }
               }}
             >

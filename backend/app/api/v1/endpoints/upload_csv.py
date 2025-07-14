@@ -1,9 +1,10 @@
 # api/v1/endpoints/import_csv.py
 
-from fastapi import APIRouter, UploadFile, File, HTTPException, Depends
 import csv
 from io import StringIO
-from typing import List, Dict
+from typing import Dict, List
+
+from fastapi import APIRouter, Depends, File, HTTPException, UploadFile
 
 router = APIRouter()
 
@@ -30,7 +31,7 @@ def get_csv_service():
 async def upload_csv(
     file: UploadFile = File(...), service: CSVService = Depends(get_csv_service)
 ):
-    if not file.filename.endswith(".csv"):
+    if file.filename is not None and file.filename.endswith(".csv"):
         raise HTTPException(status_code=400, detail="Only CSV files are allowed.")
 
     contents = await file.read()

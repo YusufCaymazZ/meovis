@@ -7,7 +7,7 @@ import ComparisonPage from './pages/ComparisonPage'
 
 function App() {
   return (
-    <Box sx={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+    <Box sx={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', backgroundColor:'#DED9FF' }}>
       <Header />
       <Container component="main" sx={{ flex: 1, py: 4 }}>
         <Routes>

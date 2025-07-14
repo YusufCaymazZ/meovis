@@ -19,7 +19,6 @@ wheels/
 *.egg-info/
 .installed.cfg
 *.egg
-
 # Virtual Environment
 venv/
 env/
@@ -61,6 +60,7 @@ htmlcov/
 .tox/
 .pytest_cache/
 .mypy_cache/
+coverage.xml
 
 # Logs
 *.log
