@@ -1,6 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+from app.api.v1.endpoints import upload_csv
+
 app = FastAPI(
     title="Meovis API",
     description="Machine Learning Visualization Toolkit API",
@@ -40,6 +42,8 @@ async def favicon():
     """Favicon endpoint - returns no favicon message"""
     return {"message": "No favicon available"}
 
+
+app.include_router(upload_csv.router, prefix="/api/v1/endpoints")
 
 if __name__ == "__main__":
     import uvicorn

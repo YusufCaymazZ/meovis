@@ -53,29 +53,33 @@ const ModelAnalysisPage = () => {
   })
 
   const handleAnalyze = async () => {
-    if (!modelFile || !dataFile) {
-      setError('Please upload both model and data files')
-      return
-    }
-
-    setIsAnalyzing(true)
-    setError(null)
-
-    try {
-      // TODO: Implement API call to backend
-      console.log('Analyzing model:', modelFile.name)
-      console.log('Analyzing data:', dataFile.name)
-      
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 2000))
-      
-    } catch (err) {
-      setError('Failed to analyze model. Please try again.')
-    } finally {
-      setIsAnalyzing(false)
-    }
+  if (!dataFile) {
+    setError("Lütfen bir CSV dosyası yükleyin");
+    return;
   }
 
+  setIsAnalyzing(true);
+  setError(null);
+
+  try {
+    const formData = new FormData();
+    formData.append("file", dataFile);
+
+    const response = await fetch("http://localhost:8000/api/v1/endpoints/upload-csv/", {
+      method: "POST",
+      body: formData,
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.detail || "Unknown error");
+    }
+  } catch (error) {
+    setError("Sunucuya bağlanırken hata oluştu");
+  } finally {
+    setIsAnalyzing(false);
+  }
+};
   return (
     <Box sx={{ maxWidth: 800, mx: 'auto' }}>
       <Typography variant="h4" component="h1" gutterBottom>

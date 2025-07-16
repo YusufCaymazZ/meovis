@@ -69,3 +69,4 @@ logs/
 # Temporary files
 *.tmp
 *.temp
+bandit-report.json

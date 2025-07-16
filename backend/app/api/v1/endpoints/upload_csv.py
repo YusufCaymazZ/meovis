@@ -31,7 +31,7 @@ def get_csv_service():
 async def upload_csv(
     file: UploadFile = File(...), service: CSVService = Depends(get_csv_service)
 ):
-    if file.filename is not None and file.filename.endswith(".csv"):
+    if file.filename is None or not file.filename.endswith(".csv"):
         raise HTTPException(status_code=400, detail="Only CSV files are allowed.")
 
     contents = await file.read()
