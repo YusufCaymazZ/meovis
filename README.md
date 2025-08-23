@@ -16,7 +16,7 @@ Meovis is an interactive visual assistant for:
 - Presenting your ML outputs to non-technical stakeholders in a meaningful way  
 - Advanced model analytics and insights
 
-All of this, with a dash of charm and the curiosity of our mascot — **Echo the cat** 
+All of this, with a dash of charm and the curiosity of our mascot — **Echo the cat.** 
 
 ---
 
