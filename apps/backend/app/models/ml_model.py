@@ -73,24 +73,5 @@ class Prediction(models.Model):
         return f"Prediction {self.id} - {self.model.name} on {self.dataset.name}"
 
 
-# Pydantic models for API
-MLModel_Pydantic = pydantic_model_creator(MLModel, name="MLModel")
-Dataset_Pydantic = pydantic_model_creator(Dataset, name="Dataset")
-Prediction_Pydantic = pydantic_model_creator(Prediction, name="Prediction")
-
-# Pydantic models for creation (without read-only fields)
-MLModelIn_Pydantic = pydantic_model_creator(
-    MLModel, 
-    name="MLModelIn", 
-    exclude_readonly=True
-)
-DatasetIn_Pydantic = pydantic_model_creator(
-    Dataset, 
-    name="DatasetIn", 
-    exclude_readonly=True
-)
-PredictionIn_Pydantic = pydantic_model_creator(
-    Prediction, 
-    name="PredictionIn", 
-    exclude_readonly=True
-)
+# Note: Pydantic models are defined in schemas/ directory
+# This avoids conflicts with Tortoise ORM model_config field

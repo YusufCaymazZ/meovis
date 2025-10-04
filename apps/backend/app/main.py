@@ -12,7 +12,7 @@ from slowapi.errors import RateLimitExceeded
 
 from app.core.config import settings
 from app.core.database import init_db, close_db
-from app.api import models, datasets, auth
+from app.api.v1 import models, datasets, metrics
 
 # Create FastAPI app
 app = FastAPI(
@@ -44,9 +44,9 @@ app.add_middleware(
 )
 
 # Include routers
-app.include_router(models.router, prefix="/api/models", tags=["models"])
-app.include_router(datasets.router, prefix="/api/datasets", tags=["datasets"])
-app.include_router(auth.router, prefix="/api/auth", tags=["authentication"])
+app.include_router(models.router, prefix="/api/v1/models", tags=["models"])
+app.include_router(datasets.router, prefix="/api/v1/datasets", tags=["datasets"])
+app.include_router(metrics.router, prefix="/api/v1/metrics", tags=["metrics"])
 
 
 @app.on_event("startup")

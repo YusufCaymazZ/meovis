@@ -38,8 +38,10 @@ class Settings(BaseSettings):
     # File Upload
     MAX_FILE_SIZE: int = 50 * 1024 * 1024  # 50MB
     UPLOAD_DIR: str = "uploads"
-    ALLOWED_MODEL_EXTENSIONS: List[str] = [".pkl", ".joblib"]
-    ALLOWED_DATASET_EXTENSIONS: List[str] = [".csv"]
+    DATASET_UPLOAD_DIR: str = "uploads/datasets"
+    MODEL_UPLOAD_DIR: str = "uploads/models"
+    ALLOWED_MODEL_EXTENSIONS: List[str] = [".pkl", ".joblib", ".pt"]
+    ALLOWED_DATASET_EXTENSIONS: List[str] = [".csv", ".json"]
     
     # Rate Limiting
     RATE_LIMIT_PER_MINUTE: int = 100
@@ -56,5 +58,7 @@ class Settings(BaseSettings):
 # Create settings instance
 settings = Settings()
 
-# Create upload directory if it doesn't exist
+# Create upload directories if they don't exist
 os.makedirs(settings.UPLOAD_DIR, exist_ok=True)
+os.makedirs(settings.DATASET_UPLOAD_DIR, exist_ok=True)
+os.makedirs(settings.MODEL_UPLOAD_DIR, exist_ok=True)

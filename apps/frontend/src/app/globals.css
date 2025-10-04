@@ -1,5 +1,8 @@
+/* stylelint-disable-next-line at-rule-no-unknown */
 @tailwind base;
+/* stylelint-disable-next-line at-rule-no-unknown */
 @tailwind components;
+/* stylelint-disable-next-line at-rule-no-unknown */
 @tailwind utilities;
 
 :root {
@@ -24,4 +27,161 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Glitch animation background */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    linear-gradient(45deg, transparent 30%, rgba(59, 130, 246, 0.1) 50%, transparent 70%),
+    linear-gradient(-45deg, transparent 30%, rgba(147, 51, 234, 0.1) 50%, transparent 70%),
+    linear-gradient(90deg, transparent 30%, rgba(236, 72, 153, 0.1) 50%, transparent 70%);
+  background-size: 200% 200%, 200% 200%, 200% 200%;
+  animation: glitch 8s ease-in-out infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(147, 51, 234, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(236, 72, 153, 0.1) 0%, transparent 50%);
+  animation: glitchPulse 6s ease-in-out infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+
+@keyframes glitch {
+  0%, 100% {
+    background-position: 0% 0%, 0% 0%, 0% 0%;
+    opacity: 0.3;
+  }
+  25% {
+    background-position: 100% 0%, 0% 100%, 50% 50%;
+    opacity: 0.6;
+  }
+  50% {
+    background-position: 0% 100%, 100% 0%, 100% 100%;
+    opacity: 0.4;
+  }
+  75% {
+    background-position: 50% 50%, 100% 100%, 0% 0%;
+    opacity: 0.7;
+  }
+}
+
+@keyframes glitchPulse {
+  0%, 100% {
+    opacity: 0.1;
+    transform: scale(1);
+  }
+  33% {
+    opacity: 0.3;
+    transform: scale(1.05);
+  }
+  66% {
+    opacity: 0.2;
+    transform: scale(0.95);
+  }
+}
+
+/* Subtle glitch effect for text elements */
+.glitch-text {
+  position: relative;
+  animation: textGlitch 4s ease-in-out infinite;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+
+.glitch-text::before {
+  color: #3b82f6;
+  animation: glitchBefore 2s ease-in-out infinite;
+}
+
+.glitch-text::after {
+  color: #ec4899;
+  animation: glitchAfter 2s ease-in-out infinite;
+}
+
+@keyframes textGlitch {
+  0%, 90%, 100% {
+    transform: translate(0);
+  }
+  10% {
+    transform: translate(-2px, 2px);
+  }
+  20% {
+    transform: translate(2px, -2px);
+  }
+  30% {
+    transform: translate(-2px, -2px);
+  }
+  40% {
+    transform: translate(2px, 2px);
+  }
+  50% {
+    transform: translate(-2px, 2px);
+  }
+  60% {
+    transform: translate(2px, -2px);
+  }
+  70% {
+    transform: translate(-2px, -2px);
+  }
+  80% {
+    transform: translate(2px, 2px);
+  }
+}
+
+@keyframes glitchBefore {
+  0%, 90%, 100% {
+    opacity: 0;
+    transform: translate(0);
+  }
+  10% {
+    opacity: 0.3;
+    transform: translate(-1px, 1px);
+  }
+  20% {
+    opacity: 0.2;
+    transform: translate(1px, -1px);
+  }
+}
+
+@keyframes glitchAfter {
+  0%, 90%, 100% {
+    opacity: 0;
+    transform: translate(0);
+  }
+  10% {
+    opacity: 0.3;
+    transform: translate(1px, -1px);
+  }
+  20% {
+    opacity: 0.2;
+    transform: translate(-1px, 1px);
+  }
 }
